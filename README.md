@@ -1,5 +1,19 @@
-# fastapi-library-demo
-# FastAPI Library Management API — Portfolio Demo Project
+# REST API для управления библиотекой книг
 
+Асинхронный backend-сервис для управления коллекцией книг, разработанный на **Python + FastAPI + SQLAlchemy 2.0**.
 
-A simple asynchronous CRUD REST API for managing a personal book collection, built with FastAPI and SQLAlchemy to demonstrate modern Python backend development patterns.
+* Реализован полноценный **CRUD REST API** для книг: создание, получение списка и отдельной книги, полная и частичная модификация, удаление.
+* Организована маршрутизация через **FastAPI APIRouter** с разделением API-логики и слоя работы с данными.
+* Реализован отдельный **Repository layer** (`BookRepository`) для инкапсуляции операций с базой данных и разделения HTTP-слоя и persistence-логики.
+* Настроена **асинхронная работа с БД** через SQLAlchemy 2.0, `AsyncSession`, `async_sessionmaker` и async engine.
+* Использован современный **SQLAlchemy 2.0 typed ORM** с `Mapped` и `mapped_column`.
+* Разделены **Pydantic-схемы и ORM-модели**: отдельные схемы для создания, чтения и частичного обновления сущности.
+* Реализована **валидация входных данных** средствами Pydantic, включая ограничения полей через `Field`.
+* Для `PATCH` реализовано частичное обновление только переданных пользователем полей через `exclude_unset=True`.
+* Настроен **Dependency Injection в FastAPI** для передачи асинхронной database session в endpoints.
+* Добавлена обработка ошибок с возвратом корректного **HTTP 404 Not Found**, если книга не существует.
+* Настроен lifecycle приложения через **FastAPI lifespan** с автоматической инициализацией таблиц базы данных при запуске.
+* API интегрирован с автоматической **OpenAPI-документацией** и интерактивным Swagger UI.
+
+**Стек:** Python · FastAPI 0.141.1 · SQLAlchemy 2.0 · Pydantic · SQLite · aiosqlite · REST API · CRUD · OpenAPI · Swagger UI · AsyncIO
+
